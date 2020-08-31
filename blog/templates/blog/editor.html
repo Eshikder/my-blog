@@ -1,5 +1,10 @@
 <HTML>
     <body>
-        <p>this is the editor</p>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit">
+            
+        </form>
     </body>
 </HTML>
