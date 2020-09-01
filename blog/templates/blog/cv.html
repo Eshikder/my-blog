@@ -2,9 +2,13 @@
     <body>
         <a href = "{% url 'editor' %}">Click here to edit my cv!</a>
         <p>here is my cv</p>
-        <form action="" method="POST">
-            {% csrf_token %}
-            {{form.as_p}}
-            <input type="submit">
+
+        {% for cv_edu in cv_edus %}
+        <div>
+            <h2>{{cv_edu.title}}</h2>
+            <p>{{cv_edu.text}}</p>
+
+        </div>
+    {% endfor %}
     </body>
 </HTML>

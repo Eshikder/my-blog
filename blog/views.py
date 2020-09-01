@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Post
+from .models import Post,CV
 from .forms import CVform
 from django.utils import timezone
 
@@ -9,12 +9,13 @@ def post_list(request):
     return render(request, 'blog/post_list.html', {'posts':posts})
 
 def editor(request):
-    return render(request, 'blog/editor.html')
-
-def cv(request):
     cvs = CVform()
     form = CVform(request.POST)
     if request.method == 'POST':
         if form.is_valid:
             form.save()
-    return render (request, 'blog/cv.html',{'form':form})
+    return render(request, 'blog/editor.html',{'form':form})
+
+def cv(request):
+    cv_edus = CV.objects.all()
+    return render (request, 'blog/cv.html',{'cv_edus':cv_edus})
